@@ -22,7 +22,3 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::get('/config',[App\Http\Controllers\UserController::class , 'config'])->name('config');
 Route::post('/config',[App\Http\Controllers\UserController::class , 'update'])->name('config-update');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
