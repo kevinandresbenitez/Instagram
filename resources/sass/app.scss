@@ -1,0 +1,15 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap';
+
+// Import PageLoader
+@import 'PageLoader/index.scss';
+
+// Import Animations
+@import 'SmoothAnimation/index.scss';
+@import 'Animations-Icons-Alerts/Success-checkmark/index.scss';

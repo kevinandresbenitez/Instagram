@@ -1,0 +1,68 @@
+.Smoothlink{
+  transition:transform 0.3s;
+  animation:showShooth 1s ;
+  position:relative;
+}
+.Smoothlink:hover{
+  transform: translateY(3px);
+}
+
+.Smoothlink2{
+  width: 110%;
+  right:  15px;
+  margin-left: 10px;
+
+  transition:transform 0.3s;
+  animation:showShooth2 1s ;
+  position:relative;
+}
+.Smoothlink2:hover{
+  transform: translateX(5px);
+}
+
+/* show animation */
+.showTransition{
+  animation:showShooth 1.3s ;
+}
+
+/*Navbar dropdown */
+.dropdown-menu{
+  position: absolute;
+  overflow: hidden;
+  animation: showDropdown 0.5s;
+}
+
+
+
+
+@keyframes showShooth{
+  from{
+    opacity:80%;
+    top:10px;
+  }
+  to{
+   opacity:100%;
+   top:0px;
+  }
+
+}
+
+@keyframes showShooth2{
+  from{
+    height:110%
+  }
+
+  to{
+    height: 100%;
+  }
+
+}
+
+@keyframes showDropdown{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 100%;
+  }
+}
