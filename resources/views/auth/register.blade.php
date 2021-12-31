@@ -11,18 +11,47 @@
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
+
+                        <div class="row mb-3 ">
+                            <img class="img img-fluid border-3 rounded-circle w-25 h-25 m-auto " src={{asset('images/UserImgDefault/UserDefault.png')}} id='Preview-img'>
+                        </div>
+
+
                         <div class="row mb-3">
                             <label for="img" class="col-md-4 col-form-label text-md-end">{{ __('Img') }}</label>
-
                             <div class="col-md-6">
-                                <input id="img" type="file" class="form-control @error('img') is-invalid @enderror" name="img" value="{{ old('img') }}" required autocomplete="name" autofocus>
+                                <input id="img" type="file"  onchange="show()" class="form-control @error('img') is-invalid @enderror" name="img" value="{{ old('img') }}" accept="image/*"  autocomplete="img" autofocus>
                                 @error('img')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $img }}</strong>
+                                        <strong>{{ $img ?? 'only files are supported : png,jpge,jpg,gif ' }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
+
+                        <script type="text/javascript">
+                          function show(){
+                            let file = document.getElementById('img').files[0];
+                            let preview = document.getElementById('Preview-img');
+
+                            if(file.type != "image/png"){
+                              return false;
+                            }
+
+                            var reader  = new FileReader();
+                            reader.onloadend = function () {
+                              preview.src = reader.result;
+                            }
+                            if (file) {
+                              reader.readAsDataURL(file);
+                            } else {
+                              preview.src = "";
+                            }
+
+
+
+                          }
+                        </script>
 
 
 

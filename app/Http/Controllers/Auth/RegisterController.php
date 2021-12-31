@@ -52,7 +52,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255','unique:users'],
-            'img' =>['required','image','mimes:png,jpge,jpg,gif','max:1000'],
+            'img' =>['image','mimes:png,jpge,jpg,gif','max:1000'],
             'email' => ['required', 'string', 'email', 'max:255','unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -74,10 +74,12 @@ class RegisterController extends Controller
       $user->save();
 
       /*If user upload image , update user and save image*/
-      $imageName=$user->id.'.'.$data['img']->extension();
-      $data['img']->move(public_path('images/UserImgProfile/'), $imageName);
-      $user->img =$imageName;
-      $user->save();
+      if(!empty($data['img'])){
+        $imageName=$user->id.'.'.$data['img']->extension();
+        $data['img']->move(public_path('images/UserImgProfile/'), $imageName);
+        $user->img =$imageName;
+        $user->save();
+      }
 
       return $user;
 

@@ -62,11 +62,13 @@
                             </li>
 
                             <li class="nav-item Smoothlink">
-                              <a  class="nav-link" href="#">Subir publicacion</a>
+                              <a  class="nav-link m" href="#">Subir publicacion</a>
                             </li>
 
+                              <!--Drop down item -->
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle Smoothlink" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle Smoothlink " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img src={{ Auth::user()->img ? asset('images/UserImgProfile/'.Auth::user()->img): asset('images/UserImgDefault/UserDefault.png') }} style='width:30px;height:30px;border-radius:50%;overflow:hidden;margin:auto' />
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -116,6 +118,8 @@
             @yield('content')
         </main>
 
+
+          <!--Page Loader-->
         <div id="PageLoader">
           <h1>
             <span class="let1">l</span>
