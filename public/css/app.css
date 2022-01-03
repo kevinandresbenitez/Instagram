@@ -11422,18 +11422,18 @@ textarea.form-control-lg {
     opacity: 0%;
   }
 }
-.Smoothlink {
+.showLink {
   transition: transform 0.3s;
-  -webkit-animation: showShooth 1s;
-          animation: showShooth 1s;
+  -webkit-animation: showLink 1s;
+          animation: showLink 1s;
   position: relative;
 }
 
-.Smoothlink:hover {
+.showLink:hover {
   transform: translateY(3px);
 }
 
-.Smoothlink2 {
+.smootLink-dropdow {
   width: 110%;
   right: 15px;
   margin-left: 10px;
@@ -11443,14 +11443,14 @@ textarea.form-control-lg {
   position: relative;
 }
 
-.Smoothlink2:hover {
+.smootLink-dropdow:hover {
   transform: translateX(5px);
 }
 
 /* show animation */
-.showTransition {
-  -webkit-animation: showShooth 1.3s;
-          animation: showShooth 1.3s;
+.showNavBar {
+  -webkit-animation: showNavBar 1.3s;
+          animation: showNavBar 1.3s;
 }
 
 /*Navbar dropdown */
@@ -11461,7 +11461,12 @@ textarea.form-control-lg {
           animation: showDropdown 0.5s;
 }
 
-@-webkit-keyframes showShooth {
+.showContainer {
+  -webkit-animation: showContainer 1s;
+          animation: showContainer 1s;
+}
+
+@-webkit-keyframes showNavBar {
   from {
     opacity: 80%;
     top: 10px;
@@ -11472,7 +11477,7 @@ textarea.form-control-lg {
   }
 }
 
-@keyframes showShooth {
+@keyframes showNavBar {
   from {
     opacity: 80%;
     top: 10px;
@@ -11482,7 +11487,27 @@ textarea.form-control-lg {
     top: 0px;
   }
 }
-@-webkit-keyframes showShooth2 {
+@-webkit-keyframes showLink {
+  from {
+    opacity: 80%;
+    top: 10px;
+  }
+  to {
+    opacity: 100%;
+    top: 0px;
+  }
+}
+@keyframes showLink {
+  from {
+    opacity: 80%;
+    top: 10px;
+  }
+  to {
+    opacity: 100%;
+    top: 0px;
+  }
+}
+@-webkit-keyframes smootLink-dropdow {
   from {
     height: 110%;
   }
@@ -11490,27 +11515,55 @@ textarea.form-control-lg {
     height: 100%;
   }
 }
-@keyframes showShooth2 {
+@keyframes smootLink-dropdow {
   from {
     height: 110%;
   }
   to {
     height: 100%;
+  }
+}
+@-webkit-keyframes showContainer {
+  from {
+    opacity: 80%;
+    top: 10px;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 100%;
+    top: 0px;
+    transform: scale(1);
+  }
+}
+@keyframes showContainer {
+  from {
+    opacity: 80%;
+    top: 10px;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 100%;
+    top: 0px;
+    transform: scale(1);
   }
 }
 @-webkit-keyframes showDropdown {
   from {
     opacity: 0;
+    transform: scale(0.5);
   }
   to {
+    transform: scale(1);
     opacity: 100%;
   }
 }
 @keyframes showDropdown {
   from {
     opacity: 0;
+    transform: scale(0.5);
   }
   to {
+    transform: scale(1);
     opacity: 100%;
   }
 }

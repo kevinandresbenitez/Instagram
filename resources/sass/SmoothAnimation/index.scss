@@ -1,13 +1,13 @@
-.Smoothlink{
+.showLink{
   transition:transform 0.3s;
-  animation:showShooth 1s ;
+  animation:showLink 1s ;
   position:relative;
 }
-.Smoothlink:hover{
+.showLink:hover{
   transform: translateY(3px);
 }
 
-.Smoothlink2{
+.smootLink-dropdow{
   width: 110%;
   right:  15px;
   margin-left: 10px;
@@ -16,13 +16,13 @@
   animation:showShooth2 1s ;
   position:relative;
 }
-.Smoothlink2:hover{
+.smootLink-dropdow:hover{
   transform: translateX(5px);
 }
 
 /* show animation */
-.showTransition{
-  animation:showShooth 1.3s ;
+.showNavBar{
+  animation:showNavBar 1.3s ;
 }
 
 /*Navbar dropdown */
@@ -32,10 +32,11 @@
   animation: showDropdown 0.5s;
 }
 
+.showContainer{
+  animation: showContainer 1s;
+}
 
-
-
-@keyframes showShooth{
+@keyframes showNavBar{
   from{
     opacity:80%;
     top:10px;
@@ -46,8 +47,18 @@
   }
 
 }
+@keyframes showLink{
+  from{
+    opacity:80%;
+    top:10px;
+  }
+  to{
+   opacity:100%;
+   top:0px;
+  }
+}
 
-@keyframes showShooth2{
+@keyframes smootLink-dropdow{
   from{
     height:110%
   }
@@ -58,6 +69,18 @@
 
 }
 
+@keyframes showContainer{
+  from{
+    opacity:80%;
+    top:10px;
+    transform: scale(0.7);
+  }
+  to{
+    opacity:100%;
+    top:0px;
+    transform: scale(1);
+  }
+}
 @keyframes showDropdown{
   from{
     opacity: 0;

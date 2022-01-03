@@ -22,7 +22,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm showTransition">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm showNavBar">
             <div class="container">
                 <a class="navbar-brand Smoothlink" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -42,39 +42,39 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link Smoothlink" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link showLink" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link Smoothlink" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link showLink" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
 
                             <li class="nav-item">
-                              <a class="nav-link Smoothlink" href="{{route('home')}}">Inicio</a>
+                              <a class="nav-link showLink" href="{{route('home')}}">Inicio</a>
                             </li>
 
                             <li class="nav-item">
-                              <a class="nav-link Smoothlink" href="#">Mis publicaciones</a>
+                              <a class="nav-link showLink" href="#">Mis publicaciones</a>
                             </li>
 
-                            <li class="nav-item Smoothlink">
+                            <li class="nav-item showLink">
                               <a  class="nav-link m" href="#">Subir publicacion</a>
                             </li>
 
                               <!--Drop down item -->
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle Smoothlink " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle showLink " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <img src={{ Auth::user()->img ? asset('images/UserImgProfile/'.Auth::user()->img): asset('images/UserImgDefault/UserDefault.png') }} style='width:30px;height:30px;border-radius:50%;overflow:hidden;margin:auto' />
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                    <a href="#" class="dropdown-item Smoothlink2" >Mi Perfil
+                                    <a href="#" class="dropdown-item smootLink-dropdow" >Mi Perfil
                                       <span class="my-auto mx-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                                           <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -83,7 +83,7 @@
                                       </span>
                                     </a>
 
-                                    <a href="/config" class="dropdown-item Smoothlink2" >Configuracion
+                                    <a href="/config" class="dropdown-item smootLink-dropdow" >Configuracion
                                       <span class="my-auto mx-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
                                           <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
