@@ -1,0 +1,21 @@
+#Preview-img{
+  animation: showImgPreview 1s;
+  transition: transform 0.5s;
+  cursor: pointer;
+}
+
+#Preview-img:hover{
+  transform: scale(1.07);
+}
+
+
+@keyframes showImgPreview {
+  from{
+    transform: scale(0.5);
+    opacity: 0%
+  }
+  to{
+    transform: scale(1);
+    opacity: 100%;
+  }
+}

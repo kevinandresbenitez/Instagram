@@ -11,49 +11,22 @@
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
-
-                        <div class="row mb-3 ">
-                            <img class="img img-fluid border-3 rounded-circle w-25 h-25 m-auto " src={{asset('images/UserImgDefault/UserDefault.png')}} id='Preview-img'>
+                        <!---  IMG preview  --->
+                        <div class="row mb-3 position-relative">
+                            <img onclick="document.getElementById('img').click();" class="img img-fluid border-3 rounded-circle w-25 h-25 m-auto " src={{asset('images/UserImgDefault/UserDefault.png')}} id='Preview-img'>
                         </div>
 
-
                         <div class="row mb-3">
-                            <label for="img" class="col-md-4 col-form-label text-md-end">{{ __('Img') }}</label>
-                            <div class="col-md-6">
-                                <input id="img" type="file"  onchange="show()" class="form-control @error('img') is-invalid @enderror" name="img" value="{{ old('img') }}" accept="image/*"  autocomplete="img" autofocus>
+                            <div class="col-md-12">
+                                <input id="img" type="file"  hidden onchange="PreviewImgForm()" class="form-control @error('img') is-invalid @enderror" name="img" value="{{ old('img') }}" accept="image/*"  autocomplete="img" autofocus>
                                 @error('img')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback col-md-auto m-auto text-center" role="alert">
                                         <strong>{{ $img ?? 'only files are supported : png,jpge,jpg,gif ' }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
-
-                        <script type="text/javascript">
-                          function show(){
-                            let file = document.getElementById('img').files[0];
-                            let preview = document.getElementById('Preview-img');
-
-                            if(file.type != "image/png"){
-                              return false;
-                            }
-
-                            var reader  = new FileReader();
-                            reader.onloadend = function () {
-                              preview.src = reader.result;
-                            }
-                            if (file) {
-                              reader.readAsDataURL(file);
-                            } else {
-                              preview.src = "";
-                            }
-
-
-
-                          }
-                        </script>
-
-
+                        <!---  IMG preview  --->
 
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>

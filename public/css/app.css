@@ -11725,3 +11725,35 @@ textarea.form-control-lg {
     top: 38px;
   }
 }
+#Preview-img {
+  -webkit-animation: showImgPreview 1s;
+          animation: showImgPreview 1s;
+  transition: transform 0.5s;
+  cursor: pointer;
+}
+
+#Preview-img:hover {
+  transform: scale(1.07);
+}
+
+@-webkit-keyframes showImgPreview {
+  from {
+    transform: scale(0.5);
+    opacity: 0%;
+  }
+  to {
+    transform: scale(1);
+    opacity: 100%;
+  }
+}
+
+@keyframes showImgPreview {
+  from {
+    transform: scale(0.5);
+    opacity: 0%;
+  }
+  to {
+    transform: scale(1);
+    opacity: 100%;
+  }
+}
