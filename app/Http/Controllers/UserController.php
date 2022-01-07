@@ -34,7 +34,7 @@ class UserController extends Controller{
     $password = $request->password;
 
     /*Validating request*/
-    $validation = $this->validate($request ,[
+     $this->validate($request ,[
         'name' => ['required', 'string', 'max:255', 'unique:users,name,'.$id],
         'img' =>['image','mimes:png,jpge,jpg,gif','max:1000'],
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$id],

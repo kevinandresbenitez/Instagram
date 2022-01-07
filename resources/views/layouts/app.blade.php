@@ -58,17 +58,18 @@
                             </li>
 
                             <li class="nav-item">
-                              <a class="nav-link showLink" href="#">Mis publicaciones</a>
+                              <a class="nav-link showLink" href={{route('publication-show')}} >Mis publicaciones</a>
                             </li>
 
                             <li class="nav-item showLink">
-                              <a  class="nav-link m" href="#">Subir publicacion</a>
+                              <a  class="nav-link m" href={{route('publication-create')}}>Subir publicacion</a>
                             </li>
 
                               <!--Drop down item -->
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle showLink " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img src={{ Auth::user()->img ? asset('images/UserImgProfile/'.Auth::user()->img): asset('images/UserImgDefault/UserDefault.png') }} style='width:30px;height:30px;border-radius:50%;overflow:hidden;margin:auto' />
+
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle position-relative showLink " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img src={{ Auth::user()->img ? asset('images/UserImgProfile/'.Auth::user()->img): asset('images/UserImgDefault/UserDefault.png') }} style='width:30px;height:30px;border-radius:50%;overflow:hidden;margin:auto;position:absolute;right:-45%;bottom:10%' />
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -102,6 +103,7 @@
                                           </svg>
                                         </span>
                                     </a>
+                                    <!--Drop down item -->
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf

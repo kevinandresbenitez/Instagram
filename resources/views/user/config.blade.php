@@ -6,47 +6,21 @@
         <div class="col-md-8  showContainer">
 
 
+            <!--- Show a mensseje for update user--->
           @if(session('message'))
-
-
-            <div class="alert alert-light showTransition text-center" role="alert">
-
-              <div class="success-checkmark ">
-                <div class="check-icon showTransition">
-                  <span class="icon-line line-tip showTransition"></span>
-                  <span class="icon-line line-long showTransition"></span>
-                  <div class="icon-circle "></div>
-                  <div class="icon-fix showTransition"></div>
-                </div>
-              </div>
-
-              {{session('message')}}
-            </div>
+            @include('includes.checkMark')
           @endif
 
           <div class="card showTransition">
               <div class="card-header">{{ __('Configuracion') }}</div>
 
               <div class="card-body ">
-                  <form method="POST" action="{{ route('config') }}" enctype="multipart/form-data">
+                  <form method="POST" action="{{ route('config-update') }}" enctype="multipart/form-data">
                       @csrf
 
-                      <!---  IMG preview  --->
-                      <div class="row mb-3 position-relative">
-                          <img  onclick="document.getElementById('img').click();" class="img img-fluid border-3 rounded-circle w-25 h-25 m-auto " src={{ Auth::user()->img ? asset('images/UserImgProfile/'.Auth::user()->img): asset('images/UserImgDefault/UserDefault.png')  }} id='Preview-img'>
-                      </div>
-
-                      <div class="row mb-3">
-                          <div class="col-md-12">
-                              <input id="img" type="file"  hidden onchange="PreviewImgForm()" class="form-control @error('img') is-invalid @enderror" name="img" value="{{ old('img') }}" accept="image/*"  autocomplete="img" autofocus>
-                              @error('img')
-                                  <span class="invalid-feedback col-md-auto m-auto text-center" role="alert">
-                                      <strong>{{ $img ?? 'only files are supported : png,jpge,jpg,gif ' }}</strong>
-                                  </span>
-                              @enderror
-                          </div>
-                      </div>
-                      <!---  IMG preview  --->
+                      <!---  import IMG preview  --->
+                          @include('includes.previewImg')
+                      <!---  import IMG preview  --->
 
                       <div class="row mb-3 ">
                           <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
@@ -105,4 +79,4 @@
         </div>
       </div>
   </div>
-@stop
+@endsection

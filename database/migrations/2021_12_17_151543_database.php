@@ -26,7 +26,7 @@ class Database extends Migration
       Schema::create('publications', function (Blueprint $table) {
           $table->id();
           $table->unsignedBigInteger('user_id');
-          $table->string('description');
+          $table->string('description')->nullable();
           $table->string('img');
           $table->timestamps();
 
