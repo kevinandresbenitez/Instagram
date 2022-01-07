@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-/*Import class static file to delete img hold*/
-use Illuminate\Support\Facades\File;
 /*Impor model Publication*/
 use App\Models\Publication;
 
@@ -19,11 +17,7 @@ class PublicationController extends Controller{
   }
 
   public function show(Request $request){
-    $publications =Publication::where('user_id',Auth::user()->id)->get()->sortBy('updated_at');
-    die();
-
-
-    
+    $publications =Publication::all()->where('user_id',Auth::user()->id);
     return view('publications.show',['publications'=>$publications]);
   }
 
