@@ -51,29 +51,39 @@
 
               <!--- Nav publication--->
               <div class="col-12 bg-white p-2 ">
-                @if(count($publication->comments) > 0)
-                  <button class="btn btn-sm bt-light btn-outline-primary" onclick="showComments(this)" type="button" name="button">Comentario</button>
-                @endif
 
+                <!--- Comments icon--->
+                @if(count($publication->comments) > 0)
+                  <button type="button" class="btn m-1 p-1" onclick="showComments(this)">
+                      <img  class="icons-publication"src={{asset('icons/comments/comment-regular.svg')}} alt="Add comment">
+                  </button>
+                @endif
+                {{count($publication->comments)}}
 
                 <!-- If publications dont have likes , show button to add ,if have likes , verify if user session send like ,show button to remove or add -->
-                {{count($publication->likes)}}
-
                 @if(count($publication->likes) > 0)
                   @for($sec = 0;count($publication->likes) >= $sec;)
                       @if(isset($publication->likes[$sec]) && $publication->likes[$sec]->user_id == Auth::user()->id)
-                          <a class="btn btn-sm bt-light btn-outline-primary" href={{route('like-remove',['publication'=>$publication->id])}}>Remove</a>
+                          <a class="btn m-1 p-1" href={{route('like-remove',['publication'=>$publication->id])}}>
+                            <img  class="icons-publication" src={{asset('icons/likes/heart-solid.svg')}} alt="">
+                          </a>
                           @break
                       @elseif($sec == count($publication->likes))
-                          <a class="btn btn-sm bt-light btn-outline-primary" href={{route('like-add',['publication'=>$publication->id])}}>add</a>
+                      <a  class="btn m-1 p-1" href={{route('like-add',['publication'=>$publication->id])}}>
+                        <img class="icons-publication" src={{asset('icons/likes/heart-regular.svg')}} alt="">
+                      </a>
                       @endif
                       @php
                         $sec ++;
                       @endphp
                   @endfor
                 @else
-                  <a class="btn btn-sm bt-light btn-outline-primary" href={{route('like-add',['publication'=>$publication->id])}}>add</a>
+                <a  class="btn m-1 p-1" href={{route('like-add',['publication'=>$publication->id])}}>
+                  <img class="icons-publication" src={{asset('icons/likes/heart-regular.svg')}} alt="">
+                </a>
                 @endif
+
+                {{count($publication->likes)}}
 
               </div>
 
@@ -87,8 +97,8 @@
 
               <!--- Comments--->
               @if($publication->comments)
+                <div class="col-12 bg-white p-2 d-none">
                     @foreach($publication->comments as $comment)
-                    <div class="col-12 bg-white p-2 d-none">
                         <!--- Header Comment--->
                       <div class="col-12 ">
                         <!--- Header left--->
@@ -102,14 +112,21 @@
                       <div class="col-12 p-2">
                         <p>{{$comment->description}}</p>
                       </div>
-                    </div>
                     @endforeach
+                  </div>
               @endif
 
               <!---Add a comment--->
               <div class="col-12 bg-white p-2">
-                <form class="form" action="index.html" method="post">
-                  <input class="form-control" type="text" name="comment" placeholder="Add a comment">
+                <form class="form" action={{route('comment-add',['publication'=>$publication->id])}} method="post">
+                  @csrf
+                  <div class="input-group">
+                    <input class="form-control" name="description" type="text" name="comment" placeholder="Add a comment" required>
+                    <input type="submit" hidden name="" value="">
+                    <button type="button" class="btn m-1 p-1" name="button" onclick="sendFormComments(this)">
+                      <img  class="icons-publication"src={{asset('icons/comments/paper-plane-regular.svg')}} alt="Add comment">
+                    </button>
+                  </div>
                 </form>
               </div>
 

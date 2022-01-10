@@ -34,3 +34,6 @@ Route::post('/publication/save',[App\Http\Controllers\PublicationController::cla
 /*For likes*/
 Route::get('/like/add/{publication}',[App\Http\Controllers\LikeController::class , 'giveLike'])->name('like-add')->where(['publication'=>'[0-9]+']);
 Route::get('/like/remove/{publication}',[App\Http\Controllers\LikeController::class , 'removeLike'])->name('like-remove')->where(['publication'=>'[0-9]+']);
+
+/*For Comments*/
+Route::post('/comments/add/{publication}',[App\Http\Controllers\CommentController::class , 'addComment'])->name('comment-add')->where(['publication'=>'[0-9]+']);

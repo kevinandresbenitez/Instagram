@@ -11810,3 +11810,12 @@ textarea.form-control-lg {
     opacity: 100%;
   }
 }
+.icons-publication {
+  width: 25px;
+  height: 25px;
+}
+
+.icons-publication:hover {
+  transform: scale(1.05);
+  transition-duration: 0.5s;
+}

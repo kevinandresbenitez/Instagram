@@ -8,4 +8,8 @@ window.showComments=(param)=>{
     info.classList.toggle('d-none');
 
 
-  }
+}
+/*In form to add comments , take the input sumbmit and click event*/
+window.sendFormComments=(param)=>{
+  param.parentElement.children[1].click()
+}
