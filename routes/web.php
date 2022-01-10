@@ -30,3 +30,7 @@ Route::post('/config/update',[App\Http\Controllers\UserController::class , 'upda
 Route::get('/publication/show',[App\Http\Controllers\PublicationController::class , 'show'])->name('publication-show');
 Route::get('/publication/create',[App\Http\Controllers\PublicationController::class , 'create'])->name('publication-create');
 Route::post('/publication/save',[App\Http\Controllers\PublicationController::class , 'save'])->name('publication-save');
+
+/*For likes*/
+Route::get('/like/add/{publication}',[App\Http\Controllers\LikeController::class , 'giveLike'])->name('like-add')->where(['publication'=>'[0-9]+']);
+Route::get('/like/remove/{publication}',[App\Http\Controllers\LikeController::class , 'removeLike'])->name('like-remove')->where(['publication'=>'[0-9]+']);
