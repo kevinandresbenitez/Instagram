@@ -58,7 +58,6 @@
                       <img  class="icons-publication"src={{asset('icons/comments/comment-regular.svg')}} alt="Add comment">
                   </button>
                 @endif
-                {{count($publication->comments)}}
 
                 <!-- If publications dont have likes , show button to add ,if have likes , verify if user session send like ,show button to remove or add -->
                 @if(count($publication->likes) > 0)
@@ -83,7 +82,10 @@
                 </a>
                 @endif
 
-                {{count($publication->likes)}}
+                  Likes:
+                  {{count($publication->likes)}}
+                  Comentarios:
+                  {{count($publication->comments)}}
 
               </div>
 
@@ -105,6 +107,8 @@
                         <div class="col-12 d-flex  align-items-center ">
                           <img class="img-fluid rounded-circle d-block my mx-2" style="width:45px;height:45px" src={{asset('/images/UserImgProfile/'.$comment->users->img)}} alt={{$publication->users->name}}>
                           <p class="my-auto mx-2 ">{{$comment->users->name}}</p>
+                          <p class="mx-0 my-auto">|</p>                      
+                          <p class="mx-2 my-auto">{{FormatTime::LongTimeFilter($comment->created_at)}}</p>
                         </div>
                       </div>
 
