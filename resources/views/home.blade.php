@@ -105,7 +105,7 @@
                       <div class="col-12 ">
                         <!--- Header left--->
                         <div class="col-12 d-flex  align-items-center ">
-                          <img class="img-fluid rounded-circle d-block my mx-2" style="width:45px;height:45px" src={{asset('/images/UserImgProfile/'.$comment->users->img)}} alt={{$publication->users->name}}>
+                          <img class="img-fluid rounded-circle d-block my mx-2" style="width:45px;height:45px" src={{ $comment->users->img ? asset('/images/UserImgProfile/'.$comment->users->img):asset('/images/UserImgDefault/UserDefault.png')}} alt={{$publication->users->name}}>
                           <p class="my-auto mx-2 ">{{$comment->users->name}}</p>
                           <p class="mx-0 my-auto">|</p>                      
                           <p class="mx-2 my-auto">{{FormatTime::LongTimeFilter($comment->created_at)}}</p>

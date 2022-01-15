@@ -4,7 +4,7 @@
   height: 100vh;
   background-color: $body-bg;
   position: fixed;
-
+  z-index: 99999;
   display: flex;
   justify-content: center;
 

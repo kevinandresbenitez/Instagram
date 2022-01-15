@@ -11292,6 +11292,7 @@ textarea.form-control-lg {
   height: 100vh;
   background-color: #f8fafc;
   position: fixed;
+  z-index: 99999;
   display: flex;
   justify-content: center;
 }

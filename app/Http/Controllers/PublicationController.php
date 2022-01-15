@@ -17,7 +17,7 @@ class PublicationController extends Controller{
   }
 
   public function show(Request $request){
-    $publications =Publication::all()->where('user_id',Auth::user()->id)->orderBy('id','desc');
+    $publications =Publication::all()->where('user_id',Auth::user()->id);
     return view('publications.show',['publications'=>$publications]);
   }
 
