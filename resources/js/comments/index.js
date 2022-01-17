@@ -17,3 +17,12 @@ window.showComments=(button)=>{
 window.sendFormComments=(button)=>{
   button.parentElement.children[1].click()
 }
+
+  /*click button delete comment and , delete comment for dom and send ajax delete  */
+window.removeComment=(route ,button)=>{
+  let commentToDelete = button.parentElement.parentElement.parentElement;
+  let commentsContainer = button.parentElement.parentElement.parentElement.parentElement;
+  commentsContainer.removeChild(commentToDelete);
+  fetch(route);
+  
+}

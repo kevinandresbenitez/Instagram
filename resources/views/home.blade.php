@@ -102,6 +102,8 @@
               @if($publication->comments)
                 <div class="col-12 bg-white p-2 d-none">
                     @foreach($publication->comments as $comment)
+
+                    <div class="col-12 ">
                         <!--- Header Comment--->
                       <div class="col-12 ">
                         <!--- Header left--->
@@ -112,7 +114,7 @@
                           <p class="mx-2 my-auto">{{FormatTime::LongTimeFilter($comment->created_at)}}</p>
                           @if($comment->user_id == Auth::user()->id)
                             <p class="mx-0 my-auto">|</p>  
-                            <a href={{route('comment-remove',['publication'=>$comment->id])}} >Eliminar</a>
+                            <button class='btn btn-sm  border-none bt-white text-primary' onclick=(removeComment('{{route('comment-remove',['publication'=>$comment->id])}}',this)) >Eliminar</button>
                           @endif
                         </div>
                       </div>
@@ -121,6 +123,7 @@
                       <div class="col-12 p-2">
                         <p>{{$comment->description}}</p>
                       </div>
+                    </div>
                     @endforeach
                   </div>
               @endif
