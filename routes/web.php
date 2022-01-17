@@ -37,3 +37,4 @@ Route::get('/like/remove/{publication}',[App\Http\Controllers\LikeController::cl
 
 /*For Comments*/
 Route::post('/comments/add/{publication}',[App\Http\Controllers\CommentController::class , 'addComment'])->name('comment-add')->where(['publication'=>'[0-9]+']);
+Route::get('/comments/delete/{publication}',[App\Http\Controllers\CommentController::class , 'removeComment'])->name('comment-remove')->where(['publication'=>'[0-9]+']);

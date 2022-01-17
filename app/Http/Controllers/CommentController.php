@@ -17,13 +17,22 @@ class CommentController extends Controller{
 
 
   public function addComment(Request $request){
-
+    
+      /*create comment  */
     $comment = new Comment();
     $comment->user_id = Auth::user()->id;
     $comment->publication_id=$request->publication;
     $comment->description = isset($request->description) ? $request->description:'Comentario Normal' ;
     $comment->save();
 
+    return redirect()->route('home');
+  }
+
+  public function removeComment($id){
+
+      /*Delete comment  */
+    $comment =Comment::all()->where('user_id',Auth::user()->id)->where('id',$id);
+    $comment->each->delete();
     return redirect()->route('home');
   }
 

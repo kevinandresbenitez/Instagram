@@ -34,7 +34,7 @@
               <div class="col-12 d-flex p-1">
                 <!--- Left item header--->
                 <div class="col-6 col-md-3 d-flex align-items-center">
-                  <img class="img-fluid m-auto rounded-circle d-block" style="width:45px;height:45px" src={{asset('/images/UserImgProfile/'.$publication->users->img)}} alt={{$publication->users->name}}>
+                  <img class="img-fluid m-auto rounded-circle d-block" style="width:45px;height:45px" src={{isset($user->img)  ? asset('/images/UserImgProfile/'.$publication->users->img): asset('images/UserImgDefault/UserDefault.png')}} alt={{$publication->users->name}}>
                   <p class="lead m-auto mx-2">{{$publication->users->name}}</p>
                 </div>
 
@@ -54,8 +54,8 @@
 
                 <!--- Comments icon--->
                 @if(count($publication->comments) > 0)
-                  <button type="button" class="btn m-1 p-1" onclick="showComments(this)">
-                      <img  class="icons-publication"src={{asset('icons/comments/comment-regular.svg')}} alt="Add comment">
+                  <button type="button" class="btn m-1 p-1 shadow-none" onclick="showComments(this)">
+                    <i class="far fa-comment fa-lg"></i>
                   </button>
                 @endif
 
@@ -63,23 +63,24 @@
                 @if(count($publication->likes) > 0)
                   @for($sec = 0;count($publication->likes) >= $sec;)
                       @if(isset($publication->likes[$sec]) && $publication->likes[$sec]->user_id == Auth::user()->id)
-                          <a class="btn m-1 p-1" href={{route('like-remove',['publication'=>$publication->id])}}>
-                            <img  class="icons-publication" src={{asset('icons/likes/heart-solid.svg')}} alt="">
-                          </a>
+                          <button onclick="removeLike('{{ route('like-remove',['publication'=>$publication->id]) }}','{{ route('like-add',['publication'=>$publication->id]) }}',this)" ,this)" class="btn m-1 p-1 shadow-none">
+                            <i class="fas fa-heart fa-lg" style='color:red'></i>
+                          </button>
                           @break
                       @elseif($sec == count($publication->likes))
-                      <a  class="btn m-1 p-1" href={{route('like-add',['publication'=>$publication->id])}}>
-                        <img class="icons-publication" src={{asset('icons/likes/heart-regular.svg')}} alt="">
-                      </a>
+                          <button  onclick="addLike('{{ route('like-add',['publication'=>$publication->id]) }}','{{ route('like-remove',['publication'=>$publication->id]) }}',this)" class="btn m-1 p-1 shadow-none" >
+                            <i class="far fa-heart fa-lg" style='color:red'></i>
+                          </button>
                       @endif
                       @php
                         $sec ++;
                       @endphp
                   @endfor
                 @else
-                <a  class="btn m-1 p-1" href={{route('like-add',['publication'=>$publication->id])}}>
-                  <img class="icons-publication" src={{asset('icons/likes/heart-regular.svg')}} alt="">
-                </a>
+                
+                <button onclick="addLike('{{ route('like-add',['publication'=>$publication->id]) }}','{{ route('like-remove',['publication'=>$publication->id]) }}',this)" class="btn m-1 p-1 shadow-none" >
+                  <i class="far fa-heart fa-lg" style='color:red'></i>
+                </button>
                 @endif
 
                   Likes:
@@ -109,6 +110,10 @@
                           <p class="my-auto mx-2 ">{{$comment->users->name}}</p>
                           <p class="mx-0 my-auto">|</p>                      
                           <p class="mx-2 my-auto">{{FormatTime::LongTimeFilter($comment->created_at)}}</p>
+                          @if($comment->user_id == Auth::user()->id)
+                            <p class="mx-0 my-auto">|</p>  
+                            <a href={{route('comment-remove',['publication'=>$comment->id])}} >Eliminar</a>
+                          @endif
                         </div>
                       </div>
 
