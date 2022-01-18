@@ -13,6 +13,8 @@ window.addLike=(route,nextRoute,button)=>{
     button.onclick = ()=>{removeLike(nextRoute,route,button)};
     fetch(route);
 
+    /*Send toast notification */
+  sendToast('Like agregado correctamente');
 }
 
 window.removeLike=(route,nextRoute,button)=>{  
@@ -22,4 +24,5 @@ window.removeLike=(route,nextRoute,button)=>{
     button.onclick =()=>{addLike(nextRoute,route,button)};
     fetch(route);
 
+   sendToast('Like eliminado correctamente');
 }

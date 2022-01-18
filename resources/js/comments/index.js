@@ -4,6 +4,9 @@ window.showComments=(button)=>{
     /*Change icon in button */
     button.children[0].classList.toggle('far');
     button.children[0].classList.toggle('fas');
+    /*add this class to know if the button is activated */
+    button.classList.toggle('buttonCommentActive');
+    
 
     let lenghtItems =button.parentElement.parentElement.children.length;
     let ItemToToggle ={item : lenghtItems - 2}
@@ -18,6 +21,10 @@ window.sendFormComments=async(url,publication_id,button)=>{
 
   /*Input value text and url to send get */
   let containerComments =button.parentElement.parentElement.parentElement.querySelector('.containerComments');
+
+  /*this button is the button to show comments , for enabled or disabled depending if have comments*/
+  let buttonShowComments =button.parentElement.parentElement.parentElement.children[2].querySelector('.buttonComment');
+  buttonShowComments.classList.remove('disabled');
 
   let comment = button.parentElement.children[0].value;
   let route = url+'/comments/add/'+publication_id+'/'+comment
@@ -118,13 +125,36 @@ window.sendFormComments=async(url,publication_id,button)=>{
   container.append(containerHeader);
   container.append(containerDescription);
   containerComments.prepend(container);
+
+  /*Send toast notification */
+  sendToast('Comentario '+'\"'+newComment.description+'\"'+' Agregado correctamente .');
+
 }
 
   /*click button delete comment and , delete comment for dom and send ajax delete  */
 window.removeComment=(route ,button)=>{
+  /*Button comments */
+  let buttonShowComments =button.parentElement.parentElement.parentElement.parentElement.parentElement.children[2];
+  
   let commentToDelete = button.parentElement.parentElement.parentElement;
   let commentsContainer = button.parentElement.parentElement.parentElement.parentElement;
+  /*Get text comment to send notification in toast  */
+  let CommentText =commentToDelete.children[1].children[0].innerText;
+
   commentsContainer.removeChild(commentToDelete);
+
+
+  if(commentsContainer.children.length === 0 ){    
+    /*the button to show comments if activated is disabled, but only if there are no comments to show */
+    buttonShowComments.querySelector('.buttonCommentActive').click();
+    buttonShowComments.querySelector('.buttonComment').classList.add('disabled');
+  }
+
+
+  /*Send toast notification */
+  sendToast('Comentario '+'\"'+CommentText+'\"'+' Eliminando correctamente .');
+
+  /*Remove comment */
   fetch(route);
   
 }

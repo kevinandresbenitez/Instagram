@@ -1,36 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<!---
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 showContainer">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div> !--->
-
-
 
 <div class="container" >
     <div class="row ">
 
       <div class="col-12 col-md-6 offset-md-1  showContainer ">
-          <!--- Items--->
+          <!--- Publications--->
           @foreach($publications as $publication)
           <div class="col-12 col-md-12  mb-5 bg-white">
 
+                <!--- Publication header--->   
               <div class="col-12 d-flex p-1">
                 <!--- Left item header--->
                 <div class="col-6 col-md-3 d-flex align-items-center">
@@ -44,7 +24,7 @@
                 </div>
               </div>
 
-                <!--- Img items--->
+              <!--- Img publication--->
               <div class="col-12 ">
                 <img class="img-fluid m-auto d-block w-100 h-100" src={{asset('/images/Publications/'.$publication->img)}} alt="Card image cap">
               </div>
@@ -54,11 +34,15 @@
 
                 <!--- Comments icon--->
                 @if(count($publication->comments) > 0)
-                  <button type="button" class="btn m-1 p-1 shadow-none" onclick="showComments(this)">
+                  <button type="button" class="btn m-1 p-1 shadow-none buttonComment" onclick="showComments(this)">
+                    <i class="far fa-comment fa-lg"></i>
+                  </button>
+                @else
+                  <button type="button" class="btn m-1 p-1 shadow-none disabled buttonComment" onclick="showComments(this)">
                     <i class="far fa-comment fa-lg"></i>
                   </button>
                 @endif
-
+                 <!--- Like icon--->
                 <!-- If publications dont have likes , show button to add ,if have likes , verify if user session send like ,show button to remove or add -->
                 @if(count($publication->likes) > 0)
                   @for($sec = 0;count($publication->likes) >= $sec;)
@@ -76,11 +60,10 @@
                         $sec ++;
                       @endphp
                   @endfor
-                @else
-                
-                <button onclick="addLike('{{ route('like-add',['publication'=>$publication->id]) }}','{{ route('like-remove',['publication'=>$publication->id]) }}',this)" class="btn m-1 p-1 shadow-none" >
-                  <i class="far fa-heart fa-lg" style='color:red'></i>
-                </button>
+                @else                
+                  <button onclick="addLike('{{ route('like-add',['publication'=>$publication->id]) }}','{{ route('like-remove',['publication'=>$publication->id]) }}',this)" class="btn m-1 p-1 shadow-none" >
+                    <i class="far fa-heart fa-lg" style='color:red'></i>
+                  </button>
                 @endif
 
                   Likes:
@@ -89,7 +72,6 @@
                   {{count($publication->comments)}}
 
               </div>
-
 
               <!--- Description--->
               @if($publication->description)
@@ -141,9 +123,6 @@
                   </div>
               </div>
 
-
-
-
           </div>
           @endforeach
 
@@ -160,6 +139,8 @@
         </div>
       </div>
 
+      <!--- Container Notification --->
+      @include('includes.toastNotification')
 </div>
 
 

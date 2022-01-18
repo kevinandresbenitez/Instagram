@@ -6,3 +6,5 @@ require('./PageLoader');
 require('./PreviewImgForm');
 require('./comments');
 require('./likes');
+require('./toastNotification');
+
