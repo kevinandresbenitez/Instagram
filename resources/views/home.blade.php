@@ -98,11 +98,12 @@
                 </div>
               @endif
 
-              <!--- Comments--->
+              <!--- Comments container--->
               @if($publication->comments)
-                <div class="col-12 bg-white p-2 d-none">
+                <div class="col-12 bg-white p-2 d-none containerComments">
                     @foreach($publication->comments as $comment)
 
+                      <!--- Comment  --->
                     <div class="col-12 ">
                         <!--- Header Comment--->
                       <div class="col-12 ">
@@ -130,17 +131,18 @@
 
               <!---Add a comment--->
               <div class="col-12 bg-white p-2">
-                <form class="form" action={{route('comment-add',['publication'=>$publication->id])}} method="post">
-                  @csrf
-                  <div class="input-group">
+                  <div class="input-group">                    
                     <input class="form-control" name="description" type="text" name="comment" placeholder="Add a comment" required>
-                    <input type="submit" hidden name="" value="">
-                    <button type="button" class="btn m-1 p-1" name="button" onclick="sendFormComments(this)">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+                    <button type="button" class="btn m-1 p-1" name="button" onclick="sendFormComments('{{Request::url()}}','{{$publication->id}}',this)">
                       <img  class="icons-publication"src={{asset('icons/comments/paper-plane-regular.svg')}} alt="Add comment">
                     </button>
                   </div>
-                </form>
               </div>
+
+
+
 
           </div>
           @endforeach

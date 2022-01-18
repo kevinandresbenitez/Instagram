@@ -1,3 +1,6 @@
+
+window.$ = require('jquery');
+
 require('./bootstrap');
 require('./PageLoader');
 require('./PreviewImgForm');

@@ -16,16 +16,18 @@ class CommentController extends Controller{
   }
 
 
-  public function addComment(Request $request){
-    
+  public function addComment($publication_id,$description){
+ 
       /*create comment  */
     $comment = new Comment();
     $comment->user_id = Auth::user()->id;
-    $comment->publication_id=$request->publication;
-    $comment->description = isset($request->description) ? $request->description:'Comentario Normal' ;
+    $comment->publication_id=$publication_id;
+    $comment->description =$description;
     $comment->save();
 
-    return redirect()->route('home');
+    /*Return the comment and the user what send comment */
+    $comment->user= Auth::user();
+    return json_encode($comment);
   }
 
   public function removeComment($id){
