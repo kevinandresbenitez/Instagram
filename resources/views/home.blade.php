@@ -114,7 +114,7 @@
               <!---Add a comment--->
               <div class="col-12 bg-white p-2">
                   <div class="input-group">                    
-                    <input class="form-control" name="description" type="text" name="comment" placeholder="Add a comment" required>
+                    <input class="form-control shadow-none border-0 border-bottom bg-white" name="description" type="text" name="comment" placeholder="Agregar un comentario" required>
                     <meta name="csrf-token" content="{{ csrf_token() }}">
 
                     <button type="button" class="btn m-1 p-1" name="button" onclick="sendFormComments('{{Request::url()}}','{{$publication->id}}',this)">
