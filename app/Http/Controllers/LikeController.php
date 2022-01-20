@@ -38,4 +38,10 @@ class LikeController extends Controller{
     return redirect()->route('home');
   }
 
+  /*Get liked publications by the user */
+  public function getLikedPublications(){
+    $likes= Like::where('user_id',Auth::user()->id)->orderBy('id','desc')->paginate(5);
+    return view('user.liked-publications',['likes'=>$likes]);
+    }
+
 }

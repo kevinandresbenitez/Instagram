@@ -10,7 +10,7 @@ class Like extends Model{
     protected $table ='likes';
 
     public function publications(){
-      return $this->belongsTo('App\Models\User','publication_id');
+      return $this->belongsTo('App\Models\Publication','publication_id');
     }
 
     public function users(){

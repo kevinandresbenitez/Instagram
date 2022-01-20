@@ -60,6 +60,10 @@
                               <a class="nav-link showLink" href={{route('publication-show')}} >Mis publicaciones</a>
                             </li>
 
+                            <li class="nav-item">
+                              <a class="nav-link showLink" href={{route('liked-Publications')}} >Favoritos</a>
+                            </li>
+
                             <li class="nav-item showLink">
                               <a  class="nav-link m" href={{route('publication-create')}}>Subir publicacion</a>
                             </li>

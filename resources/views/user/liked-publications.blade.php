@@ -1,19 +1,19 @@
 @extends('layouts.app')
-
 @section('content')
 
 <div class="container" >
     <div class="row ">
-
+      
       <div class="col-12 col-md-6 offset-md-1  showContainer ">
+        <h1 class='py-2 px-md-2'>Mis publicaciones favoritas</h1>
           <!--- Publications--->
-          @foreach($publications as $publication)
-            @include('includes.publication.itemPublication',['publication'=>$publication])
+          @foreach($likes as $like)
+            @include('includes.publication.itemPublication',['publication'=>$like->publications])           
           @endforeach
-
+          
           <!--- Pagination--->
           <div class="col-12 d-flex justify-content-center align-items-center">
-            {{$publications->links('pagination::bootstrap-4')}}
+            {{$likes->links('pagination::bootstrap-4')}}
           </div>
       </div>
 
