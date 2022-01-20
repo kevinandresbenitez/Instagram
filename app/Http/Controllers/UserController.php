@@ -62,5 +62,12 @@ class UserController extends Controller{
     return redirect()->route('config')->with(['message'=>'Cambios Realizados Correctamente']);
   }
 
+  public function profile($id){
+    $user = User::all()->where('id',$id);
+
+    var_dump($user);
+    die();
+
+  }
 
 }

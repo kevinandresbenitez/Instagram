@@ -24,6 +24,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 /*For user configs*/
 Route::get('/config',[App\Http\Controllers\UserController::class , 'config'])->name('config');
 Route::post('/config/update',[App\Http\Controllers\UserController::class , 'update'])->name('config-update');
+Route::get('/profile/{id}',[App\Http\Controllers\UserController::class , 'profile'])->name('profile')->where(['id'=>'[0-9]+']);
 
 
 /*For publications*/

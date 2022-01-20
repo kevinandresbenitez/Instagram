@@ -72,11 +72,12 @@ window.sendFormComments=async(url,publication_id,button)=>{
     imgUser.style.width = '45px';
     imgUser.style.height = '45px';
     imgUser.src =newComment.user.img ?  'images/UserImgProfile/'+newComment.user.img :'images/UserImgDefault/UserDefault.png';
-  /*Create p elements name*/
-    let userName = document.createElement('p');
+  /*Create a elements name and link to the profile*/
+    let userName = document.createElement('a');
     userName.classList.add('my-auto');
     userName.classList.add('mx-2');
-    userName.innerText =newComment.user.name;
+    userName.setAttribute('href',url+'/profile/'+newComment.user.id);
+    userName.innerText ='@'+newComment.user.name;
   /*Create p elements separator*/
     let separator = document.createElement('p');
     separator.classList.add('mx-0');
