@@ -26,6 +26,8 @@
 
       <!--- Container Notification --->
       @include('includes.toastNotification')
+      <!--- Container Modals --->
+      @include('includes.modalBoostrap')
 </div>
 
 

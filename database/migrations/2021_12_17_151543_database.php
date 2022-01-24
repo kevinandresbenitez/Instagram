@@ -31,7 +31,7 @@ class Database extends Migration
           $table->timestamps();
 
 
-          $table->foreign('user_id')->references('id')->on('users');
+          $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
       });
 
@@ -42,8 +42,8 @@ class Database extends Migration
         $table->timestamps();
 
 
-        $table->foreign('user_id')->references('id')->on('users');
-        $table->foreign('publication_id')->references('id')->on('publications');
+        $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+        $table->foreign('publication_id')->references('id')->on('publications')->onUpdate('cascade')->onDelete('cascade');
 
       });
 
@@ -54,9 +54,8 @@ class Database extends Migration
           $table->string('description');
           $table->timestamps();
 
-          $table->foreign('user_id')->references('id')->on('users');
-          $table->foreign('publication_id')->references('id')->on('publications');
-
+          $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+          $table->foreign('publication_id')->references('id')->on('publications')->onUpdate('cascade')->onDelete('cascade');          
       });
 
 

@@ -11,6 +11,20 @@
 <!--- right item header--->
 <div class="col-6 col-md-9 d-flex justify-content-end align-items-center">
   <span class="mx-2 my-auto">{{FormatTime::LongTimeFilter($publication->created_at)}}</span>
+    @if($publication->user_id === Auth::user()->id)
+
+     <!-- Button trigger modal -->
+    <button onclick="deletePublicationVerification('{{route('publication-remove',['id'=>$publication->id])}}',this)" type="button" class="btn btn-small border-0 shadow-none text-primary" data-bs-toggle="modal" data-bs-target="#Modal">
+      Eiminar
+    </button>
+
+    @endif
+    
+
+
+
+
+    
 </div>
 </div>
 
@@ -20,7 +34,7 @@
 </div>
 
 <!--- Nav publication--->
-<div class="col-12 bg-white p-2 ">
+<div class="col-12 bg-white p-2 d-flex">
 
 <!--- Comments icon--->
 @if(count($publication->comments) > 0)
@@ -56,10 +70,12 @@
   </button>
 @endif
 
-  Likes:
-  {{count($publication->likes)}}
-  Comentarios:
-  {{count($publication->comments)}}
+  <div class='d-flex col'>
+    <p class='my-auto'>Likes:</p>
+    <p class='my-auto mx-1'>{{count($publication->likes)}}</p>
+    <p class='my-auto mx-1'>Comentarios:</p>
+    <p class='my-auto'>{{count($publication->comments)}}</p>
+  </div>
 
 </div>
 

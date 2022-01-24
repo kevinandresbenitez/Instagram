@@ -71,7 +71,8 @@ window.sendFormComments=async(url,publication_id,button)=>{
     imgUser.classList.add('mx-2');
     imgUser.style.width = '45px';
     imgUser.style.height = '45px';
-    imgUser.src =newComment.user.img ?  'images/UserImgProfile/'+newComment.user.img :'images/UserImgDefault/UserDefault.png';
+    imgUser.src =url+(newComment.user.img ?  '/images/UserImgProfile/'+newComment.user.img :'/images/UserImgDefault/UserDefault.png');
+    
   /*Create a elements name and link to the profile*/
     let userName = document.createElement('a');
     userName.classList.add('my-auto');
@@ -129,21 +130,27 @@ window.sendFormComments=async(url,publication_id,button)=>{
 
   /*Send toast notification */
   sendToast('Comentario '+'\"'+newComment.description+'\"'+' Agregado correctamente .');
-
+  
+  /*In dom add Comment */
+  let CountComment=button.parentElement.parentElement.parentElement.children[2].children[2].children[3];
+  CountComment.innerText = parseInt(CountComment.innerText) + 1;  
 }
-
   /*click button delete comment and , delete comment for dom and send ajax delete  */
 window.removeComment=(route ,button)=>{
   /*Button comments */
-  let buttonShowComments =button.parentElement.parentElement.parentElement.parentElement.parentElement.children[2];
-  
+  let buttonShowComments =button.parentElement.parentElement.parentElement.parentElement.parentElement.children[2];  
   let commentToDelete = button.parentElement.parentElement.parentElement;
   let commentsContainer = button.parentElement.parentElement.parentElement.parentElement;
+
+  /*In dom remove comment */
+  let CountComment=button.parentElement.parentElement.parentElement.parentElement.parentElement.children[2].children[2].children[3];
+  CountComment.innerText = parseInt(CountComment.innerText) - 1;
+
   /*Get text comment to send notification in toast  */
   let CommentText =commentToDelete.children[1].children[0].innerText;
 
+  /*Delete comment */
   commentsContainer.removeChild(commentToDelete);
-
 
   if(commentsContainer.children.length === 0 ){    
     /*the button to show comments if activated is disabled, but only if there are no comments to show */

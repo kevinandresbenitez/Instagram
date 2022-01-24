@@ -8,9 +8,17 @@ one that will execute the callback as current route, and the like button, to cha
 
 
 window.addLike=(route,nextRoute,button)=>{
+
+    /*In dom add Like */
+    let CountLike=button.parentElement.children[2].children[1];    
+    CountLike.innerText= parseInt(CountLike.innerText) + 1;
+
+    /*Change icon */
     button.children[0].classList.remove('far');
     button.children[0].classList.add('fas');
     button.onclick = ()=>{removeLike(nextRoute,route,button)};
+
+    /*Send request to add */
     fetch(route);
 
     /*Send toast notification */
@@ -18,10 +26,16 @@ window.addLike=(route,nextRoute,button)=>{
 }
 
 window.removeLike=(route,nextRoute,button)=>{  
+    /*In dom remove Like */
+    let CountLike=button.parentElement.children[2].children[1];    
+    CountLike.innerText= parseInt(CountLike.innerText) - 1;
+
+    /*Change icon */
     button.children[0].classList.remove('fas');
     button.children[0].classList.add('far');
-
     button.onclick =()=>{addLike(nextRoute,route,button)};
+
+    /*Send request to remove*/
     fetch(route);
 
    sendToast('Like eliminado correctamente');

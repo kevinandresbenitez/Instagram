@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 /*Impor model Publication*/
 use App\Models\Publication;
@@ -16,12 +17,7 @@ class PublicationController extends Controller{
     $this->middleware('auth');
   }
 
-  public function show(Request $request){
-    $publications =Publication::all()->where('user_id',Auth::user()->id);
-    return view('publications.show',['publications'=>$publications]);
-  }
-
-  public function create(Request $request){
+  public function create(){
     return view('publications.create');
   }
 
@@ -48,8 +44,20 @@ class PublicationController extends Controller{
 
 
 
-    return redirect()->route('publication-show');
+    return redirect()->route('profile',['id'=>Auth::user()->id]);
   }
 
+  public function remove($id){  
 
+  /*Get publication */
+  $publication = Publication::where('id',$id)->where('user_id',Auth::user()->id)->first();
+  /*Delete img and delete publicaation */
+  $img =public_path('/images/Publications/'.$publication->img);
+
+  unlink($img);
+  $publication->delete();
+
+
+  return response('Delete correctly',200)->header('Content-Type', 'text/plain');    
+  } 
 }

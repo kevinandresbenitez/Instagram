@@ -63,11 +63,8 @@ class UserController extends Controller{
   }
 
   public function profile($id){
-    $user = User::all()->where('id',$id);
-
-    var_dump($user);
-    die();
-
+    $user = User::all()->where('id',$id)->first();
+    return view('user.profile',['user'=>$user]);
   }
 
 }

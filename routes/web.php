@@ -28,9 +28,9 @@ Route::get('/profile/{id}',[App\Http\Controllers\UserController::class , 'profil
 
 
 /*For publications*/
-Route::get('/publication/show',[App\Http\Controllers\PublicationController::class , 'show'])->name('publication-show');
 Route::get('/publication/create',[App\Http\Controllers\PublicationController::class , 'create'])->name('publication-create');
 Route::post('/publication/save',[App\Http\Controllers\PublicationController::class , 'save'])->name('publication-save');
+Route::get('/publication/remove/{id}',[App\Http\Controllers\PublicationController::class , 'remove'])->name('publication-remove')->where(['id'=>'[0-9]+']);
 
 /*For likes*/
 Route::get('/like/add/{publication}',[App\Http\Controllers\LikeController::class , 'giveLike'])->name('like-add')->where(['publication'=>'[0-9]+']);

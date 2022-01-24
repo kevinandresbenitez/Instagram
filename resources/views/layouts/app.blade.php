@@ -57,10 +57,6 @@
                             </li>
 
                             <li class="nav-item">
-                              <a class="nav-link showLink" href={{route('publication-show')}} >Mis publicaciones</a>
-                            </li>
-
-                            <li class="nav-item">
                               <a class="nav-link showLink" href={{route('liked-Publications')}} >Favoritos</a>
                             </li>
 
@@ -78,7 +74,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                    <a href="#" class="dropdown-item smootLink-dropdow" >Mi Perfil
+                                    <a href={{route('profile',['id'=>Auth::user()->id])}} class="dropdown-item smootLink-dropdow" >Mi Perfil
                                       <span class="my-auto mx-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                                           <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
