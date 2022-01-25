@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 
 /*Impor model Publication*/
 use App\Models\Publication;
+/*Import class static file*/
+use Illuminate\Support\Facades\File;
 
 
 class PublicationController extends Controller{
@@ -37,6 +39,7 @@ class PublicationController extends Controller{
 
     /*insert publication image*/
     $imageName=$publication->id.'.'.$request->file('img')->extension();    
+    $publication->img = $imageName;
     $path = Storage::putFileAs(
       'publications', $request->file('img'),$imageName
     );
@@ -53,12 +56,29 @@ class PublicationController extends Controller{
   /*Get publication */
   $publication = Publication::where('id',$id)->where('user_id',Auth::user()->id)->first();
   /*Delete img and delete publicaation */
-  $img =public_path('/images/Publications/'.$publication->img);
-
-  unlink($img);
+  $img =storage_path('app/publications/' . $publication->img);
+  
+  File::delete($img);
   $publication->delete();
 
 
   return response('Delete correctly',200)->header('Content-Type', 'text/plain');    
   } 
+
+  public function getImg($img){
+
+    $path = storage_path('app/publications/'.$img);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = \Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+  }
 }

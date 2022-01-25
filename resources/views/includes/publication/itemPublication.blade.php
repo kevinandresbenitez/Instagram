@@ -30,7 +30,7 @@
 
 <!--- Img publication--->
 <div class="col-12 ">
-  <img class="img-fluid m-auto d-block w-100 h-100" src={{asset('/images/Publications/'.$publication->img)}} alt="Card image cap">
+  <img class="img-fluid m-auto d-block w-100 h-100" src={{route('publication-img',['img'=>$publication->img])}} alt="Card image cap">  
 </div>
 
 <!--- Nav publication--->

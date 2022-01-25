@@ -21,7 +21,6 @@ class UserController extends Controller{
     return view('user.config');
   }
 
-
   public function update(Request $request){
 
     /*Get user for update*/

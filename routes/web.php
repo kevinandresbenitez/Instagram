@@ -32,6 +32,7 @@ Route::get('/avatar-default',[App\Http\Controllers\UserController::class , 'getA
 Route::get('/publication/create',[App\Http\Controllers\PublicationController::class , 'create'])->name('publication-create');
 Route::post('/publication/save',[App\Http\Controllers\PublicationController::class , 'save'])->name('publication-save');
 Route::get('/publication/remove/{id}',[App\Http\Controllers\PublicationController::class , 'remove'])->name('publication-remove')->where(['id'=>'[0-9]+']);
+Route::get('/publication/{img}',[App\Http\Controllers\PublicationController::class , 'getImg'])->name('publication-img');
 
 /*For likes*/
 Route::get('/like/add/{publication}',[App\Http\Controllers\LikeController::class , 'giveLike'])->name('like-add')->where(['publication'=>'[0-9]+']);
