@@ -25,7 +25,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/config',[App\Http\Controllers\UserController::class , 'config'])->name('config');
 Route::post('/config/update',[App\Http\Controllers\UserController::class , 'update'])->name('config-update');
 Route::get('/profile/{id}',[App\Http\Controllers\UserController::class , 'profile'])->name('profile')->where(['id'=>'[0-9]+']);
-
+Route::get('/avatar/{img}',[App\Http\Controllers\UserController::class , 'getAvatar'])->name('avatar');
+Route::get('/avatar-default',[App\Http\Controllers\UserController::class , 'getAvatarDefault'])->name('avatar-default');
 
 /*For publications*/
 Route::get('/publication/create',[App\Http\Controllers\PublicationController::class , 'create'])->name('publication-create');

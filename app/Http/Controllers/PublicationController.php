@@ -23,10 +23,10 @@ class PublicationController extends Controller{
 
   public function save(Request $request){
 
+    /*Validate Request */
     $this->validate($request ,[
         'img' =>['required','image','mimes:png,jpge,jpg,gif','max:1000'],
     ]);
-
 
     /*Create publication*/
     $publication = new Publication();
@@ -36,13 +36,14 @@ class PublicationController extends Controller{
     $publication->save();
 
     /*insert publication image*/
-    $imageName=$publication->id.'.'.$request['img']->extension();
-    $request['img']->move(public_path('images/Publications/'), $imageName);
-    $publication->img =$imageName;
+    $imageName=$publication->id.'.'.$request->file('img')->extension();    
+    $path = Storage::putFileAs(
+      'publications', $request->file('img'),$imageName
+    );
+    
+
+    /*Save Publication */
     $publication->save();
-
-
-
 
     return redirect()->route('profile',['id'=>Auth::user()->id]);
   }

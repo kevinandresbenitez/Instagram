@@ -75,9 +75,10 @@ class RegisterController extends Controller
 
       /*If user upload image , update user and save image*/
       if(!empty($data['img'])){
-        $imageName=$user->id.'.'.$data['img']->extension();
-        $data['img']->move(public_path('images/UserImgProfile/'), $imageName);
-        $user->img =$imageName;
+        $imageName=$user->id.'.'.$data['img']->extension();               
+        $path = \Storage::putFileAs(
+        'avatars', $data['img'],$imageName
+        );
         $user->save();
       }
 

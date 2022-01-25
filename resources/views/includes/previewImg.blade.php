@@ -1,5 +1,5 @@
 <div class="row mb-3 position-relative">
-    <img onclick="document.getElementById('img').click();" class="img img-fluid border-3 rounded-circle w-25 h-25 m-auto " src={{ isset(Auth::user()->img) ? asset('images/UserImgProfile/'.Auth::user()->img): asset('images/UserImgDefault/UserDefault.png') }} id='Preview-img'>
+    <img onclick="document.getElementById('img').click();" class="img img-fluid border-3 rounded-circle w-25 h-25 m-auto "  src={{ isset(Auth::user()->img) ? route('avatar',['img'=>Auth::user()->img]):route('avatar-default')}} id='Preview-img'>
 </div>
 
 <div class="row mb-3">

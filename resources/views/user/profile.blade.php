@@ -8,7 +8,7 @@
         <div class='row m-auto'>
             
             <div class="col-12 col-md-6 d-flex my-4 justify-content-center justify-content-md-end align-items-center">
-                <img class='img-fluid rounded-circle' style='max-width:300px;max-height:300px;width:100%;height:100%' src={{$user->img ? asset('images/UserImgProfile/'.$user->img): asset('images/UserImgDefault/UserDefault.png') }}  />
+                <img class='img-fluid rounded-circle' style='max-width:300px;max-height:300px;width:100%;height:100%' src={{$user->img ? route('avatar',['img'=> $user->img]):route('avatar-default') }}  />                
             </div>
 
             <div class="col-12 col-md-6  d-flex flex-column justify-content-center  align-items-center align-items-md-end py-md-5  overflow-hidden">

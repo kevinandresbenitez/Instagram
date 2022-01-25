@@ -68,7 +68,7 @@
                             <li class="nav-item dropdown">
 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle position-relative showLink " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img src={{ Auth::user()->img ? asset('images/UserImgProfile/'.Auth::user()->img): asset('images/UserImgDefault/UserDefault.png') }} style='width:30px;height:30px;border-radius:50%;overflow:hidden;margin:auto;position:absolute;right:-45%;bottom:10%' />
+                                    <img src={{ Auth::user()->img ? route('avatar',['img'=>Auth::user()->img]):route('avatar-default')}} style='width:30px;height:30px;border-radius:50%;overflow:hidden;margin:auto;position:absolute;right:-45%;bottom:10%' />
                                     {{ Auth::user()->name }}
                                 </a>
 

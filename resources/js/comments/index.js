@@ -71,7 +71,7 @@ window.sendFormComments=async(url,publication_id,button)=>{
     imgUser.classList.add('mx-2');
     imgUser.style.width = '45px';
     imgUser.style.height = '45px';
-    imgUser.src =url+(newComment.user.img ?  '/images/UserImgProfile/'+newComment.user.img :'/images/UserImgDefault/UserDefault.png');
+    imgUser.src =url+(newComment.user.img ?  '/avatar/'+newComment.user.img :'/avatar-default');
     
   /*Create a elements name and link to the profile*/
     let userName = document.createElement('a');

@@ -4,7 +4,7 @@
 <div class="col-12 d-flex p-1">
 <!--- Left item header--->
 <div class="col-6 col-md-3 d-flex align-items-center">
-  <img class="img-fluid m-auto rounded-circle d-block" style="width:45px;height:45px" src={{isset($user->img)  ? asset('/images/UserImgProfile/'.$publication->users->img): asset('images/UserImgDefault/UserDefault.png')}} alt={{$publication->users->name}}>
+  <img class="img-fluid m-auto rounded-circle d-block" style="width:45px;height:45px" src={{ $publication->users->img ? route('avatar',['img'=>$publication->users->img]):route('avatar-default')}} alt={{$publication->users->name}}>
   <a class="lead m-auto mx-2" href={{route('profile',['id'=> $publication->users->id])}} >{{$publication->users->name}}</a>
 </div>
 
@@ -30,7 +30,7 @@
 
 <!--- Img publication--->
 <div class="col-12 ">
-<img class="img-fluid m-auto d-block w-100 h-100" src={{asset('/images/Publications/'.$publication->img)}} alt="Card image cap">
+  <img class="img-fluid m-auto d-block w-100 h-100" src={{asset('/images/Publications/'.$publication->img)}} alt="Card image cap">
 </div>
 
 <!--- Nav publication--->
@@ -97,7 +97,7 @@
       <div class="col-12 ">
         <!--- Header left--->
         <div class="col-12 d-flex  align-items-center ">
-          <img class="img-fluid rounded-circle d-block my mx-2" style="width:45px;height:45px" src={{ $comment->users->img ? asset('/images/UserImgProfile/'.$comment->users->img):asset('/images/UserImgDefault/UserDefault.png')}} alt={{$publication->users->name}}>
+          <img class="img-fluid rounded-circle d-block my mx-2" style="width:45px;height:45px" src={{ $comment->users->img ? route('avatar',['img'=>$comment->users->img]):route('avatar-default')}} alt={{$publication->users->name}}>
           <a href={{route('profile',['id'=>$comment->users->id])}} class="my-auto mx-2 "> {{'@'.$comment->users->name}}</a>
           <p class="mx-0 my-auto">|</p>                      
           <p class="mx-2 my-auto">{{FormatTime::LongTimeFilter($comment->created_at)}}</p>

@@ -14,9 +14,8 @@ use App\Models\User;
 class UserController extends Controller{
 
   public function __construct(){
-    $this->middleware('auth');
+    $this->middleware('auth',['except'=>'getAvatarDefault']);
   }
-
 
   public function config(Request $request){
     return view('user.config');
@@ -43,18 +42,22 @@ class UserController extends Controller{
 
     /*If user upload image , update user and save image*/
     if(!empty($request['img'])){
-      /*Delete image hold*/
-      if(File::exists('images/UserImgProfile/'.$img) ){
-              File::delete('images/UserImgProfile/'.$img);
+      /*Delete image hold*/      
+      if(\Storage::disk('avatars')->exists($img)){
+          \Storage::delete('/storage/app/avatars'.$img);
       }
       /*Insert and move new image*/
-      $imageName=$user->id.'.'.$request['img']->extension();
-      $request['img']->move(public_path('images/UserImgProfile/'), $imageName);
-      $user->img =$imageName;
-    }
+      $imageName=$user->id.'.'.$request['img']->extension();            
+      $path =\Storage::putFileAs(
+        'avatars', $request->file('img'),$imageName
+      );
+
+
+    }    
 
     /*Update user*/
     $user->name =$name;
+    $user->img =$imageName;
     $user->email =$email;
     $user->password =Hash::make($password);
     $user->save();
@@ -65,6 +68,40 @@ class UserController extends Controller{
   public function profile($id){
     $user = User::all()->where('id',$id)->first();
     return view('user.profile',['user'=>$user]);
+  }
+
+  public function getAvatar($img){
+
+    $path = storage_path('app/avatars/' . $img);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = \Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+
+  }
+
+  public function getAvatarDefault(){    
+    $path = storage_path('app/avatar-default/UserDefault.png');
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = \Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
   }
 
 }
