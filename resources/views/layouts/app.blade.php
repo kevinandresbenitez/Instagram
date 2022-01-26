@@ -64,6 +64,10 @@
                               <a  class="nav-link m" href={{route('publication-create')}}>Subir publicacion</a>
                             </li>
 
+                            <li class="nav-item showLink">
+                              <a  class="nav-link m" href={{route('users')}}>Usuarios</a>
+                            </li>
+
                               <!--Drop down item -->
                             <li class="nav-item dropdown">
 

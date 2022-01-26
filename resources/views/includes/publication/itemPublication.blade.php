@@ -5,7 +5,7 @@
 <!--- Left item header--->
 <div class="col-6 col-md-3 d-flex align-items-center">
   <img class="img-fluid m-auto rounded-circle d-block" style="width:45px;height:45px" src={{ $publication->users->img ? route('avatar',['img'=>$publication->users->img]):route('avatar-default')}} alt={{$publication->users->name}}>
-  <a class="lead m-auto mx-2" href={{route('profile',['id'=> $publication->users->id])}} >{{$publication->users->name}}</a>
+  <a class="lead m-auto mx-2" href={{route('profile',['id'=> $publication->users->id])}} >{{'@'.$publication->users->name}}</a>
 </div>
 
 <!--- right item header--->

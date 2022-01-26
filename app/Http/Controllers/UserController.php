@@ -103,4 +103,16 @@ class UserController extends Controller{
     return $response;
   }
 
+  public function all($name = null){
+
+    if(empty($name)){
+      $users= User::orderBy('created_at','desc')->paginate(10);
+      return view('users',['users'=>$users]);
+    }
+
+    $users= User::orderBy('created_at','desc')->where('name','like','%'.$name.'%')->paginate(10);
+    return view('users',['users'=>$users]);
+    
+  }
+
 }
