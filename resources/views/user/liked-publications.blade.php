@@ -11,6 +11,13 @@
             @include('includes.publication.itemPublication',['publication'=>$like->publications])           
           @endforeach
           
+          <!--- If not have publications--->
+          @if(count($likes) == 0)
+            <div class='col bg-white p-3 d-flex align-items-center'>
+              <p class='m-0'>No hay publicaciones aun</p>
+            </div>
+          @endif
+
           <!--- Pagination--->
           <div class="col-12 d-flex justify-content-center align-items-center">
             {{$likes->links('pagination::bootstrap-4')}}

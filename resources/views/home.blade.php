@@ -5,11 +5,18 @@
 <div class="container" >
     <div class="row ">
 
-      <div class="col-12 col-md-6 offset-md-1  showContainer ">
+      <div class="col-12 col-md-6 offset-md-1 showContainer">
           <!--- Publications--->
           @foreach($publications as $publication)
             @include('includes.publication.itemPublication',['publication'=>$publication])
           @endforeach
+
+          <!--- If not have publications--->
+          @if(count($publications) == 0)
+            <div class='col bg-white p-3 d-flex align-items-center'>
+              <p class='m-0'>No hay publicaciones aun</p>
+            </div>
+          @endif
 
           <!--- Pagination--->
           <div class="col-12 d-flex justify-content-center align-items-center">

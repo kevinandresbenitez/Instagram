@@ -1,7 +1,7 @@
-<div class="col-12 col-md-12  mb-5 bg-white">
+<div class="col-12 col-md-12  mb-5 bg-white showContainer">
 
 <!--- Publication header--->   
-<div class="col-12 d-flex p-1">
+<div class="col-12 d-flex p-2">
 <!--- Left item header--->
 <div class="col-6 col-md-3 d-flex align-items-center">
   <img class="img-fluid m-auto rounded-circle d-block" style="width:45px;height:45px" src={{ $publication->users->img ? route('avatar',['img'=>$publication->users->img]):route('avatar-default')}} alt={{$publication->users->name}}>

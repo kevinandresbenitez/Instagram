@@ -29,10 +29,18 @@
 
         <!--- Publications User --->
         <div class="row ">
-        
+
+            <!--- Publications items--->
             @foreach($user->publications as $publication)
                 @include('includes.publication.itemPublication',['publication'=>$publication])           
             @endforeach        
+
+            <!--- If not have publications--->
+            @if(count($user->publications) == 0)
+                <div class='col bg-white p-3 d-flex align-items-center'>
+                <p class='m-0'>No hay publicaciones aun</p>
+                </div>
+            @endif
             
         </div>
 
