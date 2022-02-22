@@ -8,7 +8,7 @@
       <div class="col-12 col-md-8 offset-md-2  showContainer">
  
         <!--- shearch user--->        
-        <form class='form col-12 col-md-10 offset-md-1 d-flex' action={{route('users')}} method="get" id='Buscador'>
+        <form class='form col-12 col-md-10 offset-md-2 d-flex ' action={{route('users')}} method="get" id='Buscador'>
             @csrf()
 
             <div class='col-8'>
@@ -31,7 +31,7 @@
             })
         </script>
 
-        <!--- if not have users--->
+        <!--- Show users items --->        
         @foreach($users as $user)            
             <div class='row m-auto'>
             
@@ -52,8 +52,15 @@
             <div class="col-12 my-5">
                 <hr class='m-auto w-95'>
             </div>
-
         @endforeach
+
+         <!--- If not have users --->
+         @if(count($users) == 0)
+            <div class='col bg-white p-3 d-flex align-items-center my-4'>
+              <p class='m-0'>No se encontraron usuarios</p>
+            </div>
+         @endif
+
 
 
 
